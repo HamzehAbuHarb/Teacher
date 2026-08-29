@@ -274,6 +274,10 @@
             box-shadow: 0 25px 50px rgba(0,0,0,0.4);
             width: 100%;
             max-width: 650px;
+            min-height: 450px; /* لضمان عدم اهتزاز الصفحة عند تبديل المحتوى */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .booking-container h2 {
@@ -349,14 +353,50 @@
             gap: 10px;
         }
 
-        .submit-btn:hover {
+        .submit-btn:hover:not(:disabled) {
             background-color: #8c6527;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(168, 123, 50, 0.3);
         }
 
-        .submit-btn:active {
+        .submit-btn:active:not(:disabled) {
             transform: scale(0.98);
+        }
+
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* تنسيق رسالة النجاح */
+        .success-message {
+            text-align: center;
+            animation: fadeInScale 0.5s ease-out forwards;
+        }
+
+        .success-message i {
+            font-size: 5rem;
+            color: #25d366;
+            margin-bottom: 1.5rem;
+        }
+
+        .success-message h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-message p {
+            color: #555;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         /* ================= الفوتر وزر الواتساب ================= */
@@ -393,7 +433,7 @@
             width: 60px;
             height: 60px;
             bottom: 30px;
-            left: 30px; /* يسار الشاشة لعدم إعاقة التمرير في المواقع العربية */
+            left: 30px; 
             background-color: #25d366;
             color: #FFF;
             border-radius: 50px;
@@ -466,11 +506,12 @@
             }
 
             .nav-links a::after {
-                display: none; /* إخفاء الخط السفلي في الجوال */
+                display: none; 
             }
 
             .booking-container {
                 padding: 2rem 1.5rem;
+                min-height: auto;
             }
             
             .whatsapp-float {
@@ -536,10 +577,10 @@
     </section>
 
     <section id="booking" class="booking-section reveal">
-        <div class="booking-container">
+        <div class="booking-container" id="form-wrapper">
             <h2>نموذج التسجيل المباشر</h2>
             
-            <form action="https://formsubmit.co/26589abe74412f3c72f72d6588c37b52" method="POST">
+            <form id="booking-form" action="https://formsubmit.co/26589abe74412f3c72f72d6588c37b52" method="POST">
                 <input type="hidden" name="_subject" value="طلب تسجيل جديد - الموقع الشخصي">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
@@ -574,7 +615,7 @@
                     </select>
                 </div>
 
-                <button type="submit" class="submit-btn">إرسال البيانات <i class="fas fa-paper-plane"></i></button>
+                <button type="submit" class="submit-btn" id="submit-btn">إرسال البيانات <i class="fas fa-paper-plane"></i></button>
             </form>
         </div>
     </section>
@@ -598,7 +639,6 @@
 
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            // تغيير شكل الأيقونة عند الفتح والإغلاق
             if (navLinks.classList.contains('active')) {
                 menuIcon.classList.remove('fa-bars');
                 menuIcon.classList.add('fa-times');
@@ -608,7 +648,6 @@
             }
         });
 
-        // إغلاق القائمة عند النقر على أي رابط وإرجاع الأيقونة لشكلها الأصلي
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -623,17 +662,55 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // متى يبدأ التأثير بالظهور
+                var elementVisible = 100; 
                 
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
             }
         }
-        
-        // تشغيل الوظيفة عند التمرير وعند تحميل الصفحة لأول مرة
         window.addEventListener("scroll", reveal);
-        reveal(); // استدعاء فوري للعناصر الموجودة في أعلى الشاشة
+        reveal();
+
+        // 3. كود الإرسال بدون تغيير الصفحة (AJAX)
+        const bookingForm = document.getElementById('booking-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formWrapper = document.getElementById('form-wrapper');
+
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // منع الانتقال للصفحة الأخرى
+            
+            // تغيير حالة الزر أثناء الإرسال
+            submitBtn.innerHTML = 'جاري الإرسال... <i class="fas fa-spinner fa-spin"></i>';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(bookingForm);
+
+            fetch(bookingForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json' // مهم لإخبار FormSubmit بأننا نستخدم AJAX
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // إخفاء الفورم وإظهار رسالة النجاح
+                formWrapper.innerHTML = `
+                    <div class="success-message">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>تم الإرسال بنجاح!</h3>
+                        <p>شكراً لثقتك بنا يا بطل.<br>تم استلام طلبك وسنتواصل معك في أقرب وقت.</p>
+                    </div>
+                `;
+            })
+            .catch(error => {
+                // في حال وجود مشكلة في الإنترنت
+                alert("عذراً، حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى.");
+                submitBtn.innerHTML = 'إرسال البيانات <i class="fas fa-paper-plane"></i>';
+                submitBtn.disabled = false;
+            });
+        });
     </script>
 </body>
 </html>
