@@ -678,7 +678,7 @@
         const formWrapper = document.getElementById('form-wrapper');
 
         bookingForm.addEventListener('submit', function(e) {
-         //   e.preventDefault(); // منع الانتقال للصفحة الأخرى
+            e.preventDefault(); // منع الانتقال للصفحة الأخرى
             
             // تغيير حالة الزر أثناء الإرسال
             submitBtn.innerHTML = 'جاري الإرسال... <i class="fas fa-spinner fa-spin"></i>';
