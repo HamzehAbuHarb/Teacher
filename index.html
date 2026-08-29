@@ -580,7 +580,7 @@
         <div class="booking-container" id="form-wrapper">
             <h2>نموذج التسجيل المباشر</h2>
             
-            <form id="booking-form" action="https://formsubmit.co/26589abe74412f3c72f72d6588c37b52" method="POST">
+            <form id="booking-form" action="https://formsubmit.co/ajax/26589abe74412f3c72f72d6588c37b52" method="POST">
                 <input type="hidden" name="_subject" value="طلب تسجيل جديد - الموقع الشخصي">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
@@ -690,10 +690,16 @@
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'Accept': 'application/json' // مهم لإخبار FormSubmit بأننا نستخدم AJAX
+                    'Accept': 'application/json'
                 }
             })
-            .then(response => response.json())
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('خطأ في استجابة الخادم');
+                }
+            })
             .then(data => {
                 // إخفاء الفورم وإظهار رسالة النجاح
                 formWrapper.innerHTML = `
@@ -705,8 +711,8 @@
                 `;
             })
             .catch(error => {
-                // في حال وجود مشكلة في الإنترنت
-                alert("عذراً، حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى.");
+                console.error('Error:', error);
+                alert("عذراً، حدث خطأ في الاتصال بخادم الإرسال. يرجى المحاولة مرة أخرى.");
                 submitBtn.innerHTML = 'إرسال البيانات <i class="fas fa-paper-plane"></i>';
                 submitBtn.disabled = false;
             });
