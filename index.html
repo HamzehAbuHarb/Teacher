@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أ. حمزة أبو حرب | معلم رياضيات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ================= المتغيرات والإعدادات العامة ================= */
+        :root {
+            --primary: #3b2415; /* بني داكن */
+            --accent: #a87b32; /* ذهبي */
+            --light-bg: #f9f6f0;
+            --white: #ffffff;
+            --text-dark: #333;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; 
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ================= شريط التنقل (Navbar) ================= */
+        nav {
+            background-color: var(--primary);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.6rem;
+            font-weight: 900;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        /* تأثير الخط تحت الروابط */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            color: var(--accent);
+        }
+
+        /* ================= القسم الرئيسي (Hero Section) ================= */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap-reverse;
+            padding: 6rem 5%;
+            gap: 4rem;
+            background: linear-gradient(135deg, #f2eadf 0%, var(--light-bg) 100%);
+            min-height: 80vh;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--primary);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-text h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: #555;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            box-shadow: 0 8px 20px rgba(168, 123, 50, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #8c6527;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(168, 123, 50, 0.4);
+        }
+
+        .btn i {
+            margin-left: 10px; /* لتباعد الأيقونة في اللغة العربية */
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            min-width: 300px;
+        }
+
+        .profile-img {
+            width: clamp(280px, 40vw, 400px);
+            height: clamp(280px, 40vw, 400px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid var(--white);
+            box-shadow: 0 0 0 5px var(--accent), 0 20px 40px rgba(0,0,0,0.15);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        /* ================= قسم المميزات (Features) ================= */
+        .features {
+            padding: 5rem 5%;
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 5px;
+            background-color: var(--accent);
+            border-radius: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--light-bg);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: var(--transition);
+            border-bottom: 6px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-bottom: 6px solid var(--accent);
+            background: var(--white);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* ================= قسم التسجيل (Booking) ================= */
+        .booking-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #2a190f 100%);
+            padding: 6rem 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .booking-container {
+            background: var(--white);
+            padding: 3.5rem;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .booking-container h2 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 2.5rem;
+            font-size: 2.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+            position: relative;
+        }
+
+        .form-group i {
+            position: absolute;
+            right: 18px;
+            top: 45px;
+            color: #aaa;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        /* تلوين الأيقونة عند النقر على الحقل */
+        .form-group:focus-within i {
+            color: var(--accent);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 16px 50px 16px 20px; 
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            background-color: #fafafa;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus {
+            border-color: var(--accent);
+            background-color: var(--white);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(168, 123, 50, 0.15);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 18px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Cairo', sans-serif;
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #8c6527;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(168, 123, 50, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ================= الفوتر وزر الواتساب ================= */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background-color: #1a0f09;
+            color: var(--white);
+        }
+
+        footer p {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .contact-number {
+            font-size: 2rem;
+            color: var(--accent);
+            font-weight: 900;
+            direction: ltr;
+            display: inline-block;
+            margin: 10px 0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-number:hover {
+            color: var(--white);
+        }
+
+        /* زر واتساب العائم */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            left: 30px; /* يسار الشاشة لعدم إعاقة التمرير في المواقع العربية */
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15) rotate(-5deg);
+            background-color: #1ebe57;
+        }
+
+        /* ================= الحركات التفاعلية (Animations) ================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= التوافق مع الشاشات الصغيرة ================= */
+        @media (max-width: 768px) {
+            .hero {
+                text-align: center;
+                padding: 4rem 5%;
+                gap: 2rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                max-height: 0;
+                overflow: hidden;
+                padding: 0;
+                gap: 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-links.active {
+                max-height: 300px;
+            }
+
+            .nav-links li {
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+
+            .nav-links a::after {
+                display: none; /* إخفاء الخط السفلي في الجوال */
+            }
+
+            .booking-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .whatsapp-float {
+                bottom: 20px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">أ. حمزة <span>أبو حرب</span></a>
+        <div class="menu-toggle" id="mobile-menu" aria-label="افتح القائمة">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#features">مميزاتنا</a></li>
+            <li><a href="#booking">التسجيل</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero reveal">
+        <div class="hero-text">
+            <h1>الأستاذ حمزة أبو حرب</h1>
+            <h2>معلم رياضيات خصوصي</h2>
+            <p>خبرة في تبسيط المفاهيم وصناعة الفهم العميق. أقدم لك بيئة تعليمية محفزة تضمن لك التميز والتفوق بثقة، من الصف الأول وحتى العاشر.</p>
+            <a href="#booking" class="btn"> احجز مقعدك الآن <i class="fas fa-calendar-check"></i></a>
+        </div>
+        <div class="hero-image">
+            <img src="https://i.postimg.cc/HWhgsKjJ/file-00000000295881f4a6e6f3b80cc0feee.png" alt="الأستاذ حمزة أبو حرب" class="profile-img">
+        </div>
+    </section>
+
+    <section id="features" class="features reveal">
+        <h2 class="section-title">لماذا تختارنا؟</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-bullseye feature-icon"></i>
+                <h3>شرح بسيط</h3>
+                <p>شرح مبسط وواضح للمفاهيم الرياضية مع أمثلة متنوعة تناسب جميع مستويات الطلاب.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chart-line feature-icon"></i>
+                <h3>متابعة فردية</h3>
+                <p>متابعة فردية دقيقة لكل طالب لضمان التطور المستمر وتقوية نقاط الضعف.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-book-open feature-icon"></i>
+                <h3>حل أسئلة</h3>
+                <p>تدريب مكثف على حل الأسئلة والاختبارات للتعود على أنماط الامتحانات المختلفة.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-lightbulb feature-icon"></i>
+                <h3>تأسيس قوي</h3>
+                <p>بناء أساس رياضي متين يعزز ثقة الطالب بنفسه ويجعله قادراً على التفوق.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="booking-section reveal">
+        <div class="booking-container">
+            <h2>نموذج التسجيل المباشر</h2>
+            
+            <form action="https://formsubmit.co/hamzehajob@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="طلب تسجيل جديد - الموقع الشخصي">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                
+                <div class="form-group">
+                    <label for="studentName">اسم الطالب الرباعي:</label>
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="studentName" name="اسم_الطالب" required placeholder="أدخل الاسم الكامل">
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">رقم الهاتف للتواصل:</label>
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="phoneNumber" name="رقم_الهاتف" required placeholder="0786167029" pattern="[0-9]{10}">
+                </div>
+
+                <div class="form-group">
+                    <label for="grade">الصف الدراسي:</label>
+                    <i class="fas fa-graduation-cap"></i>
+                    <select id="grade" name="الصف" required>
+                        <option value="" disabled selected>اختر الصف من القائمة...</option>
+                        <option value="الصف الأول">الصف الأول</option>
+                        <option value="الصف الثاني">الصف الثاني</option>
+                        <option value="الصف الثالث">الصف الثالث</option>
+                        <option value="الصف الرابع">الصف الرابع</option>
+                        <option value="الصف الخامس">الصف الخامس</option>
+                        <option value="الصف السادس">الصف السادس</option>
+                        <option value="الصف السابع">الصف السابع</option>
+                        <option value="الصف الثامن">الصف الثامن</option>
+                        <option value="الصف التاسع">الصف التاسع</option>
+                        <option value="الصف العاشر">الصف العاشر</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">إرسال البيانات <i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>تعلم بذكاء ... وتفوق بثقة</p>
+        <p>للحجز والاستفسار المباشر عبر الهاتف أو واتساب:</p>
+        <a href="tel:0786167029" class="contact-number">0786167029</a>
+        <p style="margin-top: 20px; font-size: 0.95rem; color: #888;">جميع الحقوق محفوظة &copy; 2026 | أ. حمزة أبو حرب</p>
+    </footer>
+
+    <a href="https://wa.me/962786167029" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="تواصل عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // 1. تفعيل وإغلاق قائمة الهاتف
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        const menuIcon = mobileMenu.querySelector('i');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // تغيير شكل الأيقونة عند الفتح والإغلاق
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // إغلاق القائمة عند النقر على أي رابط وإرجاع الأيقونة لشكلها الأصلي
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // 2. تفعيل تأثير الظهور (Fade-in Reveal) عند التمرير
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // متى يبدأ التأثير بالظهور
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        
+        // تشغيل الوظيفة عند التمرير وعند تحميل الصفحة لأول مرة
+        window.addEventListener("scroll", reveal);
+        reveal(); // استدعاء فوري للعناصر الموجودة في أعلى الشاشة
+    </script>
+</body>
+</html>
