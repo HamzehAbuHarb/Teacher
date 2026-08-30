@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أ. حمزة ابو حرب | معلم رياضيات</title>
+    
+    <!-- ================= كود الإجبار على البقاء في الأعلى (يجب أن يكون هنا) ================= -->
+    <script>
+        // 1. مسح أي شيء بالرابط بيسحب الصفحة لتحت
+        if (window.location.hash) {
+            window.history.replaceState(null, null, window.location.pathname + window.location.search);
+        }
+        // 2. إيقاف ميزة ذاكرة المتصفح قبل تحميل أي عنصر
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        // 3. التثبيت في أعلى نقطة
+        window.scrollTo(0, 0);
+    </script>
+    <!-- ==================================================================================== -->
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -25,8 +41,8 @@
         }
 
         html {
-            /* تمت إزالة scroll-behavior: smooth من هنا لمنع النزول التلقائي عند التحميل */
             scroll-padding-top: 80px; 
+            /* تم إزالة النزول الناعم من هنا كلياً لمنع المتصفح من استخدامه للنزول التلقائي */
         }
 
         body {
@@ -872,25 +888,16 @@
     </a>
 
     <script>
-        /* ================= الكود الخاص بمنع النزول التلقائي نهائياً ================= */
-        // 1. مسح أي شيء بعد علامة # في الرابط عشان المتصفح ما ينزل إلها تلقائي
-        if (window.location.hash) {
-            window.history.replaceState(null, null, window.location.pathname + window.location.search);
-        }
-        
-        // 2. إيقاف ميزة استعادة مكان التمرير في المتصفح
-        if ('scrollRestoration' in history) {
-            history.scrollRestoration = 'manual';
-        }
-
-        // 3. إجبار الصفحة ترجع لفوق فوراً
-        window.scrollTo(0, 0);
-
-        // 4. إضافة تأثير "النزول الناعم" فقط بعد ثانية عشان يشتغل للكبسات بس، وما ينزل الصفحة لحاله
-        setTimeout(() => {
-            document.documentElement.style.scrollBehavior = 'smooth';
-        }, 500);
-        /* ========================================================================= */
+        // إجبار المتصفح على البقاء في الأعلى عند انتهاء تحميل الصفحة بالكامل كإجراء احترازي أخير
+        window.onload = function() {
+            window.scrollTo(0, 0);
+            
+            // تفعيل "النزول الناعم" (Smooth Scroll) فقط بعد التحميل بـ 1 ثانية
+            // لضمان أن الأزرار تعمل بنعومة دون التأثير على وقوف الصفحة فوق في البداية
+            setTimeout(function() {
+                document.documentElement.style.scrollBehavior = 'smooth';
+            }, 1000);
+        };
 
         // 1. القائمة التفاعلية في الشاشات الصغيرة
         const mobileMenu = document.getElementById('mobile-menu');
