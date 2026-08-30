@@ -25,7 +25,7 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            /* تمت إزالة scroll-behavior: smooth من هنا لمنع النزول التلقائي عند التحميل */
             scroll-padding-top: 80px; 
         }
 
@@ -693,7 +693,6 @@
         </ul>
     </nav>
 
-    <!-- تم إضافة id="home" لضمان وقوف الصفحة هنا -->
     <section id="home" class="hero reveal">
         <div class="hero-text">
             <h1>
@@ -873,13 +872,25 @@
     </a>
 
     <script>
-        // إجبار المتصفح على بدء الصفحة من الأعلى دائماً لمنع النزول التلقائي
+        /* ================= الكود الخاص بمنع النزول التلقائي نهائياً ================= */
+        // 1. مسح أي شيء بعد علامة # في الرابط عشان المتصفح ما ينزل إلها تلقائي
+        if (window.location.hash) {
+            window.history.replaceState(null, null, window.location.pathname + window.location.search);
+        }
+        
+        // 2. إيقاف ميزة استعادة مكان التمرير في المتصفح
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
-        window.onload = function() {
-            window.scrollTo(0, 0);
-        };
+
+        // 3. إجبار الصفحة ترجع لفوق فوراً
+        window.scrollTo(0, 0);
+
+        // 4. إضافة تأثير "النزول الناعم" فقط بعد ثانية عشان يشتغل للكبسات بس، وما ينزل الصفحة لحاله
+        setTimeout(() => {
+            document.documentElement.style.scrollBehavior = 'smooth';
+        }, 500);
+        /* ========================================================================= */
 
         // 1. القائمة التفاعلية في الشاشات الصغيرة
         const mobileMenu = document.getElementById('mobile-menu');
@@ -922,7 +933,7 @@
         }
 
         window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // تشغيل الدالة مرة واحدة عند تحميل الصفحة
+        revealOnScroll();
 
         // 4. إرسال النموذج بدون إعادة تحميل الصفحة (AJAX)
         const bookingForm = document.getElementById('booking-form');
