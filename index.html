@@ -25,7 +25,7 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            scroll-behavior: smooth; /* هذا السطر هو المسؤول عن النزول بنعومة عند الضغط على الزر */
             scroll-padding-top: 80px; 
         }
 
@@ -34,7 +34,7 @@
             background-color: var(--light-bg);
             color: var(--text-dark);
             line-height: 1.7;
-            overflow-x: hidden; /* لمنع أي تمرير أفقي بالغلط */
+            overflow-x: hidden; 
         }
 
         /* ================= شريط التنقل (Navbar) ================= */
@@ -547,29 +547,31 @@
             font-size: clamp(0.9rem, 2.5vw, 1.1rem);
         }
 
+        /* تنسيق الزر العائم الجديد (تسجيل الطالب) */
         .booking-float {
             position: fixed;
-            width: clamp(50px, 12vw, 60px);
-            height: clamp(50px, 12vw, 60px);
             bottom: clamp(15px, 4vw, 30px);
             left: clamp(15px, 4vw, 30px); 
             background-color: var(--accent);
             color: #FFF;
-            border-radius: 50%;
-            text-align: center;
-            font-size: clamp(22px, 5vw, 28px);
+            border-radius: 50px;
+            padding: 12px 25px;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: bold;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
             text-decoration: none;
             transition: var(--transition);
         }
 
         .booking-float:hover {
-            transform: scale(1.15);
+            transform: translateY(-5px);
             background-color: #8c6527;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
 
         /* ================= الحركات التفاعلية (Animations) ================= */
@@ -634,6 +636,13 @@
 
             .method-stage {
                 padding: 1.2rem;
+            }
+
+            .booking-float {
+                bottom: 20px;
+                left: 20px;
+                padding: 10px 20px;
+                font-size: 1rem;
             }
         }
         
@@ -856,8 +865,10 @@
         <p>جميع الحقوق محفوظة © للأستاذ حمزة ابو حرب</p>
     </footer>
 
-    <a href="#booking" class="booking-float" aria-label="احجز مقعدك الآن">
-        <i class="fas fa-calendar-check"></i>
+    <!-- ================= الزر العائم الجديد ================= -->
+    <a href="#booking" class="booking-float" aria-label="تسجيل الطالب">
+        <i class="fas fa-user-plus"></i>
+        <span>تسجيل الطالب</span>
     </a>
 
     <script>
