@@ -77,7 +77,6 @@
             position: relative;
         }
 
-        /* تأثير الخط تحت الروابط */
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -126,7 +125,6 @@
             min-width: 300px;
         }
 
-        /* التنسيق الجديد لاسم الأستاذ */
         .hero-text h1 {
             margin-bottom: 0.5rem;
             line-height: 1.1;
@@ -520,7 +518,7 @@
             100% { opacity: 1; transform: scale(1); }
         }
 
-        /* ================= الفوتر وزر الواتساب ================= */
+        /* ================= الفوتر وزر الحجز العائم ================= */
         footer {
             text-align: center;
             padding: 3rem 2rem;
@@ -533,32 +531,17 @@
             font-size: 1.1rem;
         }
 
-        .contact-number {
-            font-size: 2rem;
-            color: var(--accent);
-            font-weight: 900;
-            direction: ltr;
-            display: inline-block;
-            margin: 10px 0;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .contact-number:hover {
-            color: var(--white);
-        }
-
-        .whatsapp-float {
+        .booking-float {
             position: fixed;
             width: 60px;
             height: 60px;
             bottom: 30px;
             left: 30px; 
-            background-color: #25d366;
+            background-color: var(--accent);
             color: #FFF;
             border-radius: 50px;
             text-align: center;
-            font-size: 35px;
+            font-size: 28px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             z-index: 1000;
             display: flex;
@@ -568,9 +551,9 @@
             transition: var(--transition);
         }
 
-        .whatsapp-float:hover {
-            transform: scale(1.15) rotate(-5deg);
-            background-color: #1ebe57;
+        .booking-float:hover {
+            transform: scale(1.15);
+            background-color: #8c6527;
         }
 
         /* ================= الحركات التفاعلية (Animations) ================= */
@@ -634,12 +617,12 @@
                 min-height: auto;
             }
             
-            .whatsapp-float {
+            .booking-float {
                 bottom: 20px;
                 left: 20px;
                 width: 50px;
                 height: 50px;
-                font-size: 30px;
+                font-size: 24px;
             }
 
             .methodology-btn {
@@ -669,7 +652,6 @@
 
     <section id="home" class="hero reveal">
         <div class="hero-text">
-            <!-- التعديل الجديد على الاسم -->
             <h1>
                 <span class="title-prefix">الأستاذ</span>
                 <span class="title-name">حمزة ابو حرب</span>
@@ -708,7 +690,6 @@
             </div>
         </div>
 
-        <!-- ================= زر وقسم منهجية التدريس ================= -->
         <div class="methodology-container">
             <button class="methodology-btn" id="methodologyBtn">
                 <span>📌 منهجيتي في التدريس: رحلة متكاملة لإتقان الرياضيات</span>
@@ -777,7 +758,7 @@
                 <div class="form-group">
                     <label for="phoneNumber">رقم الهاتف للتواصل:</label>
                     <i class="fas fa-phone"></i>
-                    <input type="tel" id="phoneNumber" name="رقم_الهاتف" required placeholder="0786167029" pattern="[0-9]{10}">
+                    <input type="tel" id="phoneNumber" name="رقم_الهاتف" required placeholder="أدخل رقم الهاتف">
                 </div>
 
                 <div class="form-group">
@@ -798,15 +779,17 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                    <div class="form-group">
                     <label for="learningMode">طريقة التعلم المفضلة:</label>
                     <i class="fas fa-map-marker-alt"></i>
                     <select id="learningMode" name="طريقة_التعلم" required>
-                        <option value="" disabled selected>اختر الطريقة...</option>
-                        <option value="وجاهي - إربد/الحصن">وجاهي (إربد - الحصن)</option>
-                        <option value="أونلاين (تفاعلي)">أونلاين (عبر زووم/تيمز)</option>
-                    </select>
-                </div>
+                    <option value="" disabled selected>اختر الطريقة...</option>
+                    <option value="منزل ولي أمر الطالب">منزل ولي أمر الطالب</option>
+                    <option value="منزل الأستاذ">منزل الأستاذ</option>
+                    <option value="أون لاين عن طريق (الزوم/التيمز)">أون لاين عن طريق (الزوم/التيمز)</option>
+                 </select>
+               </div>
+
 
                 <div class="form-group">
                     <label for="studentLevel">تقييم مبدئي لمستوى الطالب:</label>
@@ -829,16 +812,12 @@
 
     <footer>
         <p>جميع الحقوق محفوظة © للأستاذ حمزة ابو حرب</p>
-        <p>للتواصل المباشر والاستفسارات:</p>
-        <a href="https://wa.me/962786167029" target="_blank" class="contact-number">0786167029</a>
     </footer>
 
-    <!-- زر واتساب العائم -->
-    <a href="https://wa.me/962786167029" class="whatsapp-float" target="_blank" aria-label="تواصل عبر الواتساب">
-        <i class="fab fa-whatsapp"></i>
+    <a href="#booking" class="booking-float" aria-label="احجز مقعدك الآن">
+        <i class="fas fa-calendar-check"></i>
     </a>
 
-    <!-- JavaScript للوظائف التفاعلية -->
     <script>
         // 1. القائمة التفاعلية في الشاشات الصغيرة
         const mobileMenu = document.getElementById('mobile-menu');
@@ -872,7 +851,7 @@
         }
 
         window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // تشغيل أولي
+        revealOnScroll();
 
         // 4. إرسال النموذج بدون إعادة تحميل الصفحة (AJAX)
         const bookingForm = document.getElementById('booking-form');
@@ -904,13 +883,13 @@
                         </div>
                     `;
                 } else {
-                    alert('حدث خطأ أثناء الإرسال، يرجى المحاولة لاحقاً أو التواصل مباشرة عبر الواتساب.');
+                    alert('حدث خطأ أثناء الإرسال، يرجى المحاولة لاحقاً.');
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<span>تأكيد التسجيل</span> <i class="fas fa-paper-plane"></i>';
                 }
             })
             .catch(error => {
-                alert('حدث خطأ في الاتصال، يرجى التحقق من شبكة الإنترنيت والمحاولة مجدداً.');
+                alert('حدث خطأ في الاتصال، يرجى التحقق من شبكة الإنترنت والمحاولة مجدداً.');
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<span>تأكيد التسجيل</span> <i class="fas fa-paper-plane"></i>';
             });
