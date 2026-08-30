@@ -126,12 +126,25 @@
             min-width: 300px;
         }
 
+        /* التنسيق الجديد لاسم الأستاذ */
         .hero-text h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .title-prefix {
+            display: block;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .title-name {
+            display: block;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
             color: var(--primary);
             font-weight: 900;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
         }
 
         .hero-text h2 {
@@ -656,7 +669,11 @@
 
     <section id="home" class="hero reveal">
         <div class="hero-text">
-            <h1>الأستاذ حمزة ابو حرب</h1>
+            <!-- التعديل الجديد على الاسم -->
+            <h1>
+                <span class="title-prefix">الأستاذ</span>
+                <span class="title-name">حمزة ابو حرب</span>
+            </h1>
             <h2>معلم رياضيات خصوصي</h2>
             <p>خبرة في تبسيط المفاهيم وصناعة الفهم العميق. أقدم لك بيئة تعليمية محفزة تضمن لك التميز والتفوق بثقة، من الصف الأول وحتى العاشر.</p>
             <a href="#booking" class="btn"> احجز مقعدك الآن <i class="fas fa-calendar-check"></i></a>
@@ -691,6 +708,7 @@
             </div>
         </div>
 
+        <!-- ================= زر وقسم منهجية التدريس ================= -->
         <div class="methodology-container">
             <button class="methodology-btn" id="methodologyBtn">
                 <span>📌 منهجيتي في التدريس: رحلة متكاملة لإتقان الرياضيات</span>
@@ -815,10 +833,12 @@
         <a href="https://wa.me/962786167029" target="_blank" class="contact-number">0786167029</a>
     </footer>
 
+    <!-- زر واتساب العائم -->
     <a href="https://wa.me/962786167029" class="whatsapp-float" target="_blank" aria-label="تواصل عبر الواتساب">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- JavaScript للوظائف التفاعلية -->
     <script>
         // 1. القائمة التفاعلية في الشاشات الصغيرة
         const mobileMenu = document.getElementById('mobile-menu');
