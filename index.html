@@ -25,7 +25,7 @@
         }
 
         html {
-            scroll-behavior: smooth; /* هذا السطر هو المسؤول عن النزول بنعومة عند الضغط على الزر */
+            scroll-behavior: smooth;
             scroll-padding-top: 80px; 
         }
 
@@ -547,7 +547,7 @@
             font-size: clamp(0.9rem, 2.5vw, 1.1rem);
         }
 
-        /* تنسيق الزر العائم الجديد (تسجيل الطالب) */
+        /* تنسيق الزر العائم */
         .booking-float {
             position: fixed;
             bottom: clamp(15px, 4vw, 30px);
@@ -693,6 +693,7 @@
         </ul>
     </nav>
 
+    <!-- تم إضافة id="home" لضمان وقوف الصفحة هنا -->
     <section id="home" class="hero reveal">
         <div class="hero-text">
             <h1>
@@ -865,13 +866,21 @@
         <p>جميع الحقوق محفوظة © للأستاذ حمزة ابو حرب</p>
     </footer>
 
-    <!-- ================= الزر العائم الجديد ================= -->
+    <!-- ================= الزر العائم ================= -->
     <a href="#booking" class="booking-float" aria-label="تسجيل الطالب">
         <i class="fas fa-user-plus"></i>
         <span>تسجيل الطالب</span>
     </a>
 
     <script>
+        // إجبار المتصفح على بدء الصفحة من الأعلى دائماً لمنع النزول التلقائي
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        };
+
         // 1. القائمة التفاعلية في الشاشات الصغيرة
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
