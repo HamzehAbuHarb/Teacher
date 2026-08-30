@@ -168,7 +168,7 @@
         }
 
         .btn i {
-            margin-left: 10px; /* لتباعد الأيقونة في اللغة العربية */
+            margin-left: 10px;
         }
 
         .hero-image {
@@ -202,7 +202,7 @@
         .section-title {
             color: var(--primary);
             font-size: 2.5rem;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             position: relative;
             display: inline-block;
         }
@@ -223,6 +223,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
+            margin-bottom: 3.5rem;
         }
 
         .feature-card {
@@ -258,6 +259,114 @@
             font-size: 1.5rem;
         }
 
+        /* ================= قسم منهجية التدريس (Methodology Toggle) ================= */
+        .methodology-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: right;
+        }
+
+        .methodology-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, #2a190f 100%);
+            color: var(--white);
+            border: 2px solid var(--accent);
+            padding: 20px 30px;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 10px 25px rgba(59, 36, 21, 0.2);
+        }
+
+        .methodology-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(59, 36, 21, 0.3);
+            border-color: #d4a359;
+        }
+
+        .methodology-btn .icon-arrow {
+            transition: transform 0.4s ease;
+            color: var(--accent);
+            font-size: 1.4rem;
+        }
+
+        .methodology-btn.active .icon-arrow {
+            transform: rotate(180deg);
+        }
+
+        .methodology-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0, 1, 0, 1);
+            background: var(--light-bg);
+            border-radius: 0 0 20px 20px;
+            margin-top: -10px;
+            border: 2px solid transparent;
+            opacity: 0;
+        }
+
+        .methodology-content.active {
+            max-height: 2000px;
+            padding: 2.5rem 2rem;
+            opacity: 1;
+            border-color: var(--accent);
+            border-top: none;
+            transition: max-height 0.8s ease-in-out, opacity 0.5s ease-in, padding 0.3s;
+        }
+
+        .method-stage {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1.8rem;
+            border-right: 5px solid var(--accent);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+            transition: var(--transition);
+        }
+
+        .method-stage:last-child {
+            margin-bottom: 0;
+        }
+
+        .method-stage:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .stage-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary);
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .stage-item {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .stage-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .stage-item strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
         /* ================= قسم التسجيل (Booking) ================= */
         .booking-section {
             background: linear-gradient(135deg, var(--primary) 0%, #2a190f 100%);
@@ -274,7 +383,7 @@
             box-shadow: 0 25px 50px rgba(0,0,0,0.4);
             width: 100%;
             max-width: 650px;
-            min-height: 450px; /* لضمان عدم اهتزاز الصفحة عند تبديل المحتوى */
+            min-height: 450px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -301,7 +410,6 @@
             transition: var(--transition);
         }
 
-        /* تلوين الأيقونة عند النقر على الحقل */
         .form-group:focus-within i {
             color: var(--accent);
         }
@@ -427,7 +535,6 @@
             color: var(--white);
         }
 
-        /* زر واتساب العائم */
         .whatsapp-float {
             position: fixed;
             width: 60px;
@@ -521,6 +628,15 @@
                 height: 50px;
                 font-size: 30px;
             }
+
+            .methodology-btn {
+                font-size: 1.1rem;
+                padding: 15px 20px;
+            }
+
+            .method-stage {
+                padding: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -574,6 +690,55 @@
                 <p>بناء أساس رياضي متين يعزز ثقة الطالب بنفسه ويجعله قادراً على التفوق.</p>
             </div>
         </div>
+
+        <div class="methodology-container">
+            <button class="methodology-btn" id="methodologyBtn">
+                <span>📌 منهجيتي في التدريس: رحلة متكاملة لإتقان الرياضيات</span>
+                <i class="fas fa-chevron-down icon-arrow"></i>
+            </button>
+            <div class="methodology-content" id="methodologyContent">
+                
+                <div class="method-stage">
+                    <div class="stage-header">
+                        <span>1️⃣</span>
+                        <span>مرحلة التشخيص والتأسيس (قبل البدء)</span>
+                    </div>
+                    <div class="stage-item">
+                        🎯 <strong>اختبار تحديد المستوى:</strong> تقييم تشخيصي قصير قبل بدء الحصص لاكتشاف الفجوات المعرفية والأساسيات المفقودة.
+                    </div>
+                    <div class="stage-item">
+                        🗺️ <strong>الخطة المخصصة:</strong> تصميم مسار تعليمي فردي يبدأ من مستوى الطالب الفعلي، لضمان بناء أساس متين قبل الخوض في المنهج الجديد.
+                    </div>
+                </div>
+
+                <div class="method-stage">
+                    <div class="stage-header">
+                        <span>2️⃣</span>
+                        <span>استراتيجية الشرح والتفاعل (أثناء الحصة)</span>
+                    </div>
+                    <div class="stage-item">
+                        🌐 <strong>الرياضيات المرتبطة بالواقع:</strong> تحويل المعادلات المجردة إلى تجارب بصرية ملموسة؛ كاستخدام مسارات طائرات الدرون لشرح الهندسة، أو سيناريوهات معاصر الزيتون لتبسيط الجبر.
+                    </div>
+                    <div class="stage-item">
+                        🧠 <strong>التدرج المعرفي:</strong> البناء التدريجي للمعلومة (تذكر ⬅️ فهم ⬅️ تطبيق ⬅️ تحليل المسائل المعقدة).
+                    </div>
+                </div>
+
+                <div class="method-stage">
+                    <div class="stage-header">
+                        <span>3️⃣</span>
+                        <span>المتابعة والقياس (ما بعد الحصة)</span>
+                    </div>
+                    <div class="stage-item">
+                        📊 <strong>التقييم المستمر:</strong> اختبارات قصيرة وتفاعلية بنهاية كل لقاء لضمان تحقيق أهداف الحصة.
+                    </div>
+                    <div class="stage-item">
+                        📈 <strong>تقارير الإنجاز الدورية:</strong> تزويد أولياء الأمور بتحديثات مستمرة حول مستوى تقدم الطالب والخطوات اللاحقة.
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </section>
 
     <section id="booking" class="booking-section reveal">
@@ -615,74 +780,90 @@
                     </select>
                 </div>
 
-                <button type="submit" class="submit-btn" id="submit-btn">إرسال البيانات <i class="fas fa-paper-plane"></i></button>
+                <div class="form-group">
+                    <label for="learningMode">طريقة التعلم المفضلة:</label>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <select id="learningMode" name="طريقة_التعلم" required>
+                        <option value="" disabled selected>اختر الطريقة...</option>
+                        <option value="وجاهي - إربد/الحصن">وجاهي (إربد - الحصن)</option>
+                        <option value="أونلاين (تفاعلي)">أونلاين (عبر زووم/تيمز)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentLevel">تقييم مبدئي لمستوى الطالب:</label>
+                    <i class="fas fa-chart-bar"></i>
+                    <select id="studentLevel" name="مستوى_الطالب" required>
+                        <option value="" disabled selected>كيف تقيم مستوى الطالب حالياً؟</option>
+                        <option value="يحتاج تأسيس قوي">يحتاج تأسيس قوي</option>
+                        <option value="متوسط ويحتاج متابعة">متوسط ويحتاج متابعة</option>
+                        <option value="ممتاز ويسعى للتفوق">ممتاز ويسعى للتفوق</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span>تأكيد التسجيل</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </form>
         </div>
     </section>
 
     <footer>
-        <p>تعلم بذكاء ... وتفوق بثقة</p>
-        <p>للحجز والاستفسار المباشر عبر الهاتف أو واتساب:</p>
-        <a href="tel:0786167029" class="contact-number">0786167029</a>
-        <p style="margin-top: 20px; font-size: 0.95rem; color: #888;">جميع الحقوق محفوظة &copy; 2026 | أ. حمزة أبو حرب</p>
+        <p>جميع الحقوق محفوظة © للأستاذ حمزة ابو حرب</p>
+        <p>للتواصل المباشر والاستفسارات:</p>
+        <a href="https://wa.me/962786167029" target="_blank" class="contact-number">0786167029</a>
     </footer>
 
-    <a href="https://wa.me/962786167029" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="تواصل عبر واتساب">
+    <a href="https://wa.me/962786167029" class="whatsapp-float" target="_blank" aria-label="تواصل عبر الواتساب">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-        // 1. تفعيل وإغلاق قائمة الهاتف
+        // 1. القائمة التفاعلية في الشاشات الصغيرة
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
-        const menuIcon = mobileMenu.querySelector('i');
 
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
-            } else {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            }
         });
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            });
+        // 2. فتح وإغلاق منهجية التدريس (Accordion)
+        const methodologyBtn = document.getElementById('methodologyBtn');
+        const methodologyContent = document.getElementById('methodologyContent');
+
+        methodologyBtn.addEventListener('click', () => {
+            methodologyBtn.classList.toggle('active');
+            methodologyContent.classList.toggle('active');
         });
 
-        // 2. تفعيل تأثير الظهور (Fade-in Reveal) عند التمرير
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; 
-                
+        // 3. تأثير الظهور التدريجي أثناء التمرير (Scroll Reveal)
+        const reveals = document.querySelectorAll('.reveal');
+
+        function revealOnScroll() {
+            const windowHeight = window.innerHeight;
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
                 if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+                    element.classList.add('active');
                 }
-            }
+            });
         }
-        window.addEventListener("scroll", reveal);
-        reveal();
 
-        // 3. كود الإرسال بدون تغيير الصفحة (AJAX)
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // تشغيل أولي
+
+        // 4. إرسال النموذج بدون إعادة تحميل الصفحة (AJAX)
         const bookingForm = document.getElementById('booking-form');
-        const submitBtn = document.getElementById('submit-btn');
         const formWrapper = document.getElementById('form-wrapper');
+        const submitBtn = document.getElementById('submitBtn');
 
         bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // منع الانتقال للصفحة الأخرى
+            e.preventDefault();
             
-            // تغيير حالة الزر أثناء الإرسال
-            submitBtn.innerHTML = 'جاري الإرسال... <i class="fas fa-spinner fa-spin"></i>';
             submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>جاري الإرسال...</span> <i class="fas fa-spinner fa-spin"></i>';
 
             const formData = new FormData(bookingForm);
 
@@ -695,26 +876,23 @@
             })
             .then(response => {
                 if (response.ok) {
-                    return response.json();
+                    formWrapper.innerHTML = `
+                        <div class="success-message">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>تم إرسال طلبك بنجاح!</h3>
+                            <p>شكراً لاهتمامك. سيتم التواصل معك في أقرب وقت لتأكيد حجز المقعد والتفاصيل.</p>
+                        </div>
+                    `;
                 } else {
-                    throw new Error('خطأ في استجابة الخادم');
+                    alert('حدث خطأ أثناء الإرسال، يرجى المحاولة لاحقاً أو التواصل مباشرة عبر الواتساب.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>تأكيد التسجيل</span> <i class="fas fa-paper-plane"></i>';
                 }
             })
-            .then(data => {
-                // إخفاء الفورم وإظهار رسالة النجاح
-                formWrapper.innerHTML = `
-                    <div class="success-message">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>تم الإرسال بنجاح!</h3>
-                        <p>شكراً لثقتك بنا يا بطل.<br>تم استلام طلبك وسنتواصل معك في أقرب وقت.</p>
-                    </div>
-                `;
-            })
             .catch(error => {
-                console.error('Error:', error);
-                alert("عذراً، حدث خطأ في الاتصال بخادم الإرسال. يرجى المحاولة مرة أخرى.");
-                submitBtn.innerHTML = 'إرسال البيانات <i class="fas fa-paper-plane"></i>';
+                alert('حدث خطأ في الاتصال، يرجى التحقق من شبكة الإنترنيت والمحاولة مجدداً.');
                 submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>تأكيد التسجيل</span> <i class="fas fa-paper-plane"></i>';
             });
         });
     </script>
