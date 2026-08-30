@@ -282,9 +282,9 @@
             background: linear-gradient(135deg, var(--primary) 0%, #2a190f 100%);
             color: var(--white);
             border: 2px solid var(--accent);
-            padding: 20px 30px;
-            border-radius: 20px;
-            font-size: 1.3rem;
+            padding: 16px 25px; /* تم تقليل المسافة الداخلية */
+            border-radius: 15px; /* تنعيم الحواف */
+            font-size: 1.1rem; /* تم تصغير حجم الخط */
             font-weight: 700;
             cursor: pointer;
             display: flex;
@@ -292,20 +292,20 @@
             align-items: center;
             transition: var(--transition);
             font-family: 'Cairo', sans-serif;
-            box-shadow: 0 10px 25px rgba(59, 36, 21, 0.2);
+            box-shadow: 0 8px 20px rgba(59, 36, 21, 0.15);
         }
 
         .methodology-btn:hover {
             background: var(--primary);
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(59, 36, 21, 0.3);
+            box-shadow: 0 12px 25px rgba(59, 36, 21, 0.25);
             border-color: #d4a359;
         }
 
         .methodology-btn .icon-arrow {
             transition: transform 0.4s ease;
             color: var(--accent);
-            font-size: 1.4rem;
+            font-size: 1.2rem; /* تصغير أيقونة السهم */
         }
 
         .methodology-btn.active .icon-arrow {
@@ -317,7 +317,7 @@
             overflow: hidden;
             transition: max-height 0.6s cubic-bezier(0, 1, 0, 1);
             background: var(--light-bg);
-            border-radius: 0 0 20px 20px;
+            border-radius: 0 0 15px 15px;
             margin-top: -10px;
             border: 2px solid transparent;
             opacity: 0;
@@ -325,7 +325,7 @@
 
         .methodology-content.active {
             max-height: 2000px;
-            padding: 2.5rem 2rem;
+            padding: 2rem 1.5rem; /* تقليل الهوامش الداخلية للمحتوى */
             opacity: 1;
             border-color: var(--accent);
             border-top: none;
@@ -334,11 +334,11 @@
 
         .method-stage {
             background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 1.8rem;
-            border-right: 5px solid var(--accent);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid var(--accent); /* تخفيف سماكة الخط الجانبي */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             transition: var(--transition);
         }
 
@@ -348,25 +348,26 @@
 
         .method-stage:hover {
             transform: translateX(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
         }
 
         .stage-header {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: var(--primary);
-            font-size: 1.35rem;
-            font-weight: 800;
-            margin-bottom: 1.2rem;
+            font-size: 1.15rem; /* تصغير عنوان المرحلة */
+            font-weight: 700; /* تخفيف السماكة */
+            margin-bottom: 1rem;
             border-bottom: 1px dashed #e0e0e0;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
 
         .stage-item {
-            margin-bottom: 1rem;
-            line-height: 1.8;
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
             color: #444;
+            font-size: 0.95rem; /* تصغير خط الفقرات لتكون أكثر تناسقاً */
         }
 
         .stage-item:last-child {
@@ -376,6 +377,7 @@
         .stage-item strong {
             color: var(--primary);
             font-weight: 700;
+            font-size: 1rem; /* تمييز الكلمات المفتاحية بحجم أكبر قليلاً */
         }
 
         /* ================= قسم التسجيل (Booking) ================= */
@@ -626,12 +628,20 @@
             }
 
             .methodology-btn {
-                font-size: 1.1rem;
-                padding: 15px 20px;
+                font-size: 1rem; /* تصغير الخط أكثر ليناسب الجوال */
+                padding: 12px 15px;
             }
 
             .method-stage {
-                padding: 1.3rem;
+                padding: 1.2rem;
+            }
+            
+            .stage-header {
+                font-size: 1.05rem;
+            }
+            
+            .stage-item {
+                font-size: 0.9rem;
             }
         }
     </style>
